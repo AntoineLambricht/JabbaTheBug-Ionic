@@ -24,11 +24,11 @@ export class HomePage {
        if (status.authorized) {
          // camera permission was granted
   
-  
+         this.color = "yellow"
          // start scanning
          let scanSub = this.qrScanner.scan().subscribe((text: string) => {
            console.log('Scanned something', text);
-  
+            this.color = "blue"
            this.qrScanner.hide(); // hide camera preview
            scanSub.unsubscribe(); // stop scanning
          });
