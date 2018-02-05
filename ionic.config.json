@@ -1,6 +1,6 @@
 {
-  "name": "jabbathebug",
-  "app_id": "4e7eae22",
+  "name": "ionic3-barcode",
+  "app_id": "",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}
