@@ -9,7 +9,8 @@ import { DataServiceProvider } from '../../providers/data-service/data-service';
   templateUrl: 'home.html'
 })
 export class HomePage {
-
+  machineName = "PAS TEST"
+  correctMachine = false;
   products: any[] = [];
   selectedProduct: any;
   productFound:boolean = false;
@@ -28,19 +29,8 @@ export class HomePage {
   scan() {
     this.selectedProduct = {};
     this.barcodeScanner.scan().then((barcodeData) => {
-      /*this.selectedProduct = this.products.find(product => product.plu === barcodeData.text);
-      if(this.selectedProduct !== undefined) {
-        this.productFound = true;
-        console.log(this.selectedProduct);
-      } else {
-        this.selectedProduct = {};
-        this.productFound = false;
-        this.toast.show('Product not found', '5000', 'center').subscribe(
-          toast => {
-            console.log(toast);
-          }
-        );
-      }*/
+      this.correctMachine = true;
+      this.machineName = "test"
       this.toast.show(barcodeData.text, '5000', 'center').subscribe(
         toast => {
           console.log(barcodeData.text);

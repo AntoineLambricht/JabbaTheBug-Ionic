@@ -15,16 +15,11 @@
     <button ion-button color="dark" full round (click)="scan()">Start Scan</button>
   </h1>
 
-  <ion-card *ngIf="productFound">
-    <ion-card-header>
-      <h2>Price: $ {{selectedProduct.price}}</h2>
-    </ion-card-header>
-    <ion-card-content>
-      <ul>
-        <li>{{selectedProduct.plu}}</li>
-        <li>{{selectedProduct.name}}</li>
-        <li>{{selectedProduct.desc}}</li>
-      </ul>
-    </ion-card-content>
-  </ion-card>
+  <ion-pane *ngIf="correctMachine">
+    <form>
+      <ion-input type="text" ng-value="machineName" ng-readonly="true"></ion-input>
+    </form>
+  </ion-pane>
+
+  
 </ion-content>
