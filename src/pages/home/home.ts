@@ -8,6 +8,8 @@ import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
 })
 export class HomePage {
 
+  color = "green";
+
   constructor(public navCtrl: NavController,private qrScanner: QRScanner) {
 
   }
@@ -15,6 +17,9 @@ export class HomePage {
   qrscanner(){
     this.qrScanner.prepare()
     .then((status: QRScannerStatus) => {
+
+      
+
        if (status.authorized) {
          // camera permission was granted
   
@@ -33,10 +38,12 @@ export class HomePage {
          // wait for user to scan something, then the observable callback will be called
   
        } else if (status.denied) {
+          this.color = "red";       
          // camera permission was permanently denied
          // you must use QRScanner.openSettings() method to guide the user to the settings page
          // then they can grant the permission from there
        } else {
+         this.color = "black";
          // permission was denied, but not permanently. You can ask for permission again at a later time.
        }
     })
