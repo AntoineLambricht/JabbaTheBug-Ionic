@@ -1,0 +1,8 @@
+{
+  "name": "jabbathebug",
+  "app_id": "4e7eae22",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
