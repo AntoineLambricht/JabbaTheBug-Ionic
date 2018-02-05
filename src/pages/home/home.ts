@@ -21,9 +21,6 @@ export class HomePage {
       this.color = "orange"
       this.qrScanner.prepare()
       .then((status: QRScannerStatus) => {
-  
-  
-  
          if (status.authorized) {
            // camera permission was granted
     
@@ -53,6 +50,7 @@ export class HomePage {
       })
       .catch((e: any) =>this.color = "Error is', "+e); 
     }
+  
   }
 
   /*qrscanner(){
@@ -91,6 +89,6 @@ export class HomePage {
     })
     .catch((e: any) =>this.color = "Error is', "+e); 
   }*/
-  
 
-}
+
+
