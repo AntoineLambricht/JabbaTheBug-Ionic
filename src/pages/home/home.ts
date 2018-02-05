@@ -15,10 +15,11 @@ export class HomePage {
   }
 
   qrscanner(){
+    this.color = "orange"
     this.qrScanner.prepare()
     .then((status: QRScannerStatus) => {
 
-      
+
 
        if (status.authorized) {
          // camera permission was granted
