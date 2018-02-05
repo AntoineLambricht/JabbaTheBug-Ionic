@@ -28,7 +28,7 @@ export class HomePage {
   scan() {
     this.selectedProduct = {};
     this.barcodeScanner.scan().then((barcodeData) => {
-      this.selectedProduct = this.products.find(product => product.plu === barcodeData.text);
+      /*this.selectedProduct = this.products.find(product => product.plu === barcodeData.text);
       if(this.selectedProduct !== undefined) {
         this.productFound = true;
         console.log(this.selectedProduct);
@@ -40,7 +40,12 @@ export class HomePage {
             console.log(toast);
           }
         );
-      }
+      }*/
+      this.toast.show(barcodeData.text, '5000', 'center').subscribe(
+        toast => {
+          console.log(barcodeData.text);
+        }
+      );
     }, (err) => {
       this.toast.show(err, '5000', 'center').subscribe(
         toast => {
