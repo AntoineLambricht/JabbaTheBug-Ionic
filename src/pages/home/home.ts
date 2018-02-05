@@ -17,7 +17,7 @@ export class HomePage {
   touch(){
     console.log("Hello");
     this.color = "brun";
-    qrscanner(){
+  
       this.color = "orange"
       this.qrScanner.prepare()
       .then((status: QRScannerStatus) => {
