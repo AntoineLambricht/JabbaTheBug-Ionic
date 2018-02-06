@@ -51,33 +51,33 @@ export class HomePage {
       this.formValues["photo"] = this.imageSrc;
     }
     this._toast.show(JSON.stringify(this.formValues), '5000', 'bottom').subscribe(
-      toast => {
-        console.log("Send OK!");
-    }
-  );
-  this.http.post(this.path + '/api/bugs', this.formValues, {headers : {'Content-Type':'application/json'}})
-  .then(data => {
-    this._toast.show("" +data.status, '5000', 'bottom').subscribe(
+        toast => {
+           console.log("Send OK!");
+        }
+    );
+    this.http.post("http://jabbathebug.tircher.be/api/bugs", this.formValues, {})
+    .then(data => {
+      this._toast.show("tt + " +data.status, '5000', 'bottom').subscribe(
                        toast => {
                          console.log("Send OK!");
                      }
                    );
-    console.log(data.status);
-    console.log(data.data); // data received by server
-    console.log(data.headers);
+      console.log(data.status);
+      console.log(data.data); // data received by server
+      console.log(data.headers);
 
-  })
-  .catch(error => {
-    this._toast.show("" +error.status, '5000', 'bottom').subscribe(
-      toast => {
-        console.log("Send OK!");
-    }
-  );
-    console.log(error.status);
-    console.log(error.error); // error message as string
-    console.log(error.headers);
+    })
+    .catch(error => {
+      this._toast.show("ll - " +error.status, '5000', 'bottom').subscribe(
+        toast => {
+          console.log("Send OK!");
+      }
+    );
+      console.log(error.status);
+      console.log(error.error); // error message as string
+      console.log(error.headers);
 
-  });
+    });
     // this._http.post('http://jabbathebug.tircher.be/api/bugs',JSON.stringify(this.formValues)
     //     ).then(
     //         (response) => {
