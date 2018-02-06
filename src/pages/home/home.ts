@@ -50,25 +50,23 @@ export class HomePage {
             .subscribe(
             (response) => {
               this._toast.show(response, '5000', 'center').subscribe(
-                toast => {
-                console.log(
-                "Send OK!"
+                    toast => {
+                      console.log("Send OK!");
+                  }
                 );
-              }
-            );
-          this.correctMachine = false;
-          this.imageTaken = false;
-          this.imageSrc = "";
+              this.correctMachine = false;
+              this.imageTaken = false;
+              this.imageSrc = "";
             }, (err) => {
-              this._toast.show("Failed to send the bug", '5000', 'center').subscribe(
+              //this._alerteService.error("Subscribe Failed!");
+              this._toast.show("Send Failed!", '5000', 'center').subscribe(
                 toast => {
-                console.log(
-                "Send Failed!"
-                );
-              }
-                //this._alerteService.error("Subscribe Failed!");
-            }
-            );
+                  console.log("Send Failed!");
+                }
+              );
+          }
+          );
+
   }
 
   scan() {
