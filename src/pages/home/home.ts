@@ -44,41 +44,10 @@ export class HomePage {
   }
 
   send(){
-    //{"machinename":"LEN1407",
-    //"mailuser":"antoine.lambricht@student.vinci.be",
-    //"descrip":"bluescreen of death", 
-    //"photo":....}
-
-    //
-    //var values = {};
-
-  // $(form).find('input').each(function () {
-  //   values[this.name] = $(this).val();
-  // });
-
-    //
-    //
     if(this.imageSrc !== ""){
       this.formValues["photo"] = this.imageSrc;
     }
-    var strValues = ""
-    var values = {};
-    values["machinename"] = "LEN1408";
-    values["mailuser"]="benja.pierre@hotmail.com";
-    values["descrip"]="Va te faire Lambricht";
-    values["photo"]="";
-    for(var i in this.formValues){
-      strValues += this.formValues[i];
-    }
-    this._toast.show(strValues, '5000', 'bottom').subscribe(
-      toast => {
-        console.log("Send OK!");
-    });
-    this._toast.show(values.toString(), '5000', 'bottom').subscribe(
-      toast => {
-        console.log("Send OK!");
-    });
-    this._http.post('http://jabbathebug.tircher.be/api/bugs', values)
+    this._http.post('http://jabbathebug.tircher.be/api/bugs', this.formValues)
             .subscribe(
             (response) => {
               this._toast.show("" + response.toString, '5000', 'bottom').subscribe(
