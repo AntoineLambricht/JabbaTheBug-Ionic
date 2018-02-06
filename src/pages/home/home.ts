@@ -6,6 +6,8 @@ import { Toast } from '@ionic-native/toast';
 import { DataServiceProvider } from '../../providers/data-service/data-service';
 import { Http } from '@angular/http'
 
+let $ = require('jquery');
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -24,7 +26,6 @@ export class HomePage {
   path = "";
 
 
-
   constructor(public navCtrl: NavController,
     private _barcodeScanner: BarcodeScanner,
     private _toast: Toast,
@@ -40,13 +41,20 @@ export class HomePage {
     this.imageSrc = "";
   }
     
+  getValues(){
+    var values = {};
+
+    //values["machineName"] = ;
+  }
+
+
   send(){
     //{"machinename":"LEN1407",
     //"mailuser":"antoine.lambricht@student.vinci.be",
     //"descrip":"bluescreen of death", 
     //"photo":....}
-    var data = ""
-    this._http.post(this.path+'/api/bugs', '{"machinename":"LEN1408","mailuser":"antoine.lambricht@student.vinci.be","descrip":"bluescreen of death"}')
+    var data = this.getValues();
+    this._http.post('http://jabbathebug.tircher.be/api/bugs', '{"machinename":"LEN1408","mailuser":"antoine.lambricht@student.vinci.be","descrip":"bluescreen of death"}')
             .subscribe(
             (response) => {
               this._toast.show("" + response.toString, '5000', 'center').subscribe(
