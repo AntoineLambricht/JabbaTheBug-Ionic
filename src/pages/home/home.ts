@@ -51,7 +51,7 @@ export class HomePage {
     if(this.imageSrc !== ""){
 
     }
-    this._toast.show("" + this.formValues.descrip, '5000', 'center').subscribe(
+    this._toast.show("" + this.formValues["descrip"], '5000', 'center').subscribe(
       toast => {
         console.log("Send OK!");
     }
