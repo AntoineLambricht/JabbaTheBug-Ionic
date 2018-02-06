@@ -53,7 +53,7 @@ export class HomePage {
         console.log("Send OK!");
     }
   );
-    this._http.post('http://jabbathebug.tircher.be/api/bugs',this.formValues
+    this._http.post('http://jabbathebug.tircher.be/api/bugs',JSON.stringify(this.formValues)
         ).subscribe(
             (response) => {
               this._toast.show("" + response.toString(), '5000', 'bottom').subscribe(
