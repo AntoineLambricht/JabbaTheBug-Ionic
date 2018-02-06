@@ -52,7 +52,8 @@ export class HomePage {
 
   scan() {
     this.barcodeScanner.scan().then((barcodeData) => {
-      this.machineName = barcodeData.text
+      var res = barcodeData.text.split("//");
+      this.machineName = res[1];
       this.correctMachine = true;
     }, (err) => {
       this.toast.show(err, '5000', 'center').subscribe(
