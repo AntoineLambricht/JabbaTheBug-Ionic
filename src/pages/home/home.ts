@@ -48,10 +48,12 @@ export class HomePage {
     if(this.imageSrc !== ""){
       this.formValues["photo"] = this.imageSrc;
     }
+    this._toast.show(JSON.stringify(this.formValues), '5000', 'bottom').subscribe(
+      toast => {
+        console.log("Send OK!");
+    }
+  );
     this._http.post('http://jabbathebug.tircher.be/api/bugs',JSON.stringify(this.formValues)
-          // "machinename":this.formValues["machinename"],
-          // "mailuser":this.formValues["mailuser"],
-          // "descrip":this.formValues["descrip"]
         ).subscribe(
             (response) => {
               this._toast.show("" + response.toString(), '5000', 'bottom').subscribe(
