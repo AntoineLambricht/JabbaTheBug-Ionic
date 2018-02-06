@@ -53,8 +53,18 @@ export class HomePage {
   scan() {
     this.barcodeScanner.scan().then((barcodeData) => {
       var res = barcodeData.text.split("//");
-      this.machineName = res[1];
-      this.correctMachine = true;
+      if (res[0] === "jabbathebug:"){
+        this.machineName = res[1];
+        this.correctMachine = true;
+      }
+      else {
+        this.cancel()
+        this.toast.show("Incompatible QR-Code", '5000', 'center').subscribe(
+          toast => {
+            console.log(toast);
+          }
+        );
+      }
     }, (err) => {
       this.toast.show(err, '5000', 'center').subscribe(
         toast => {
