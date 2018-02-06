@@ -35,18 +35,25 @@ export class HomePage {
     this.correctMachine = false;
   }
     
-    
-    
+  send(){
+    this.toast.show("Bug reported", '5000', 'center').subscribe(
+            toast => {
+           console.log(
+            "Bug reported";
+           );
+         }
+       );
+  }
 
   scan() {
     this.barcodeScanner.scan().then((barcodeData) => {
       this.machineName = barcodeData.text
       this.correctMachine = true;
-      this.toast.show(barcodeData.text, '5000', 'center').subscribe(
-        toast => {
-          console.log(barcodeData.text);
-        }
-      );
+      // this.toast.show(barcodeData.text, '5000', 'center').subscribe(
+      //   toast => {
+      //     console.log(barcodeData.text);
+      //   }
+      // );
     }, (err) => {
       this.toast.show(err, '5000', 'center').subscribe(
         toast => {

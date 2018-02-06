@@ -15,7 +15,7 @@
       </form> -->
       <ion-list no-line>
         <ion-item>
-          <ion-input type="text" name="machineName" readonly></ion-input>
+          <ion-input type="text" name="machineName" readonly>{{machineName}}</ion-input>
         </ion-item>
         <ion-item>
           <ion-input type="text" placeholder="Your problem" name="descrip"></ion-input>
@@ -39,7 +39,8 @@
     <button ion-button color="dark" full round (click)="scan()">Start Scan</button>
   </h1>
   <h1 *ngIf="correctMachine">
-    <button ion-button color="dark" full round (click)="cancel()">Cancel Scan</button>
+    <button ion-button color="dark" round (click)="cancel()">Cancel Scan</button>
+    <button ion-button color="dark" round (click)="send()">Send</button>
   </h1>
 
   
