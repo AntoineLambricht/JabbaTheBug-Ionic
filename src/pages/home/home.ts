@@ -6,7 +6,7 @@ import { Toast } from '@ionic-native/toast';
 import { DataServiceProvider } from '../../providers/data-service/data-service';
 import { Http } from '@angular/http'
 
-let $ = require('jquery');
+//let $ = require('jquery');
 
 @Component({
   selector: 'page-home',
