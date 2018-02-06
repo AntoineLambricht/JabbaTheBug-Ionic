@@ -13,13 +13,20 @@
   </p>
   <h1>
     <button ion-button color="dark" full round (click)="scan()">Start Scan</button>
+    <button ion-button color="dark" full round (click)="takePhoto()">Take Photo</button>
   </h1>
 
-  <ion-pane *ngIf="correctMachine">
+  <ion-card *ngIf="correctMachine">
     <form>
-      <ion-input type="text" ng-value="machineName" ng-readonly="true"></ion-input>
+      <input type="text" value="{{machineName}}" readonly>
     </form>
-  </ion-pane>
+  </ion-card>
+
+    <div *ngIf="imageTaken">
+      <img src="{{imageSrc}}" alt="bug-photo"> 
+    </div>
+      
+
 
   
 </ion-content>
