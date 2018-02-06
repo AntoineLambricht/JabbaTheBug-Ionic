@@ -5,6 +5,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 import { Toast } from '@ionic-native/toast';
 import { DataServiceProvider } from '../../providers/data-service/data-service';
 import { Http } from '@angular/http'
+import { NgForm } from '@angular/forms';
 
 //let $ = require('jquery');
 
@@ -14,6 +15,7 @@ import { Http } from '@angular/http'
 })
 export class HomePage {
   machineName = ""
+  formValues = {}
   correctMachine:boolean = false;
   options: CameraOptions = {
     quality: 100,
@@ -40,20 +42,20 @@ export class HomePage {
     this.imageTaken = false;
     this.imageSrc = "";
   }
-    
-  getValues(){
-    var values = {};
-
-    //values["machineName"] = ;
-  }
-
 
   send(){
     //{"machinename":"LEN1407",
     //"mailuser":"antoine.lambricht@student.vinci.be",
     //"descrip":"bluescreen of death", 
     //"photo":....}
-    var data = this.getValues();
+    if(this.imageSrc !== ""){
+
+    }
+    this._toast.show("" + this.formValues, '5000', 'center').subscribe(
+      toast => {
+        console.log("Send OK!");
+    }
+  );
     this._http.post('http://jabbathebug.tircher.be/api/bugs', '{"machinename":"LEN1408","mailuser":"antoine.lambricht@student.vinci.be","descrip":"bluescreen of death"}')
             .subscribe(
             (response) => {
