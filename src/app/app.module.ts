@@ -7,7 +7,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { Camera } from '@ionic-native/camera';
 import { Toast } from '@ionic-native/toast';
 import { HttpModule } from '@angular/http';
-
+import { HTTP } from '@ionic-native/http';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { DataServiceProvider } from '../providers/data-service/data-service';
@@ -30,6 +30,7 @@ import { DataServiceProvider } from '../providers/data-service/data-service';
   providers: [
     StatusBar,
     SplashScreen,
+    HTTP,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     BarcodeScanner,
     Toast,
