@@ -49,7 +49,7 @@ export class HomePage {
     this._http.post(this.path+'/api/bugs', '{"machinename":"LEN1408","mailuser":"antoine.lambricht@student.vinci.be","descrip":"bluescreen of death"}')
             .subscribe(
             (response) => {
-              this._toast.show(response, '5000', 'center').subscribe(
+              this._toast.show(response.toString, '5000', 'center').subscribe(
                     toast => {
                       console.log("Send OK!");
                   }
