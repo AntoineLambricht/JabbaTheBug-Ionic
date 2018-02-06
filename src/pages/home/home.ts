@@ -10,7 +10,7 @@ import { DataServiceProvider } from '../../providers/data-service/data-service';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  machineName = "PAS TEST"
+  machineName = ""
   correctMachine:boolean = false;
   options: CameraOptions = {
     quality: 100,
@@ -37,23 +37,21 @@ export class HomePage {
     
   send(){
     this.toast.show("Bug reported", '5000', 'center').subscribe(
-            toast => {
-           console.log(
-            "Bug reported"
-           );
-         }
-       );
+          toast => {
+          console.log(
+          "Bug reported"
+          );
+        }
+      );
+    this.correctMachine = false;
+    this.imageTaken = false;
+    this.imageSrc = "";
   }
 
   scan() {
     this.barcodeScanner.scan().then((barcodeData) => {
       this.machineName = barcodeData.text
       this.correctMachine = true;
-      // this.toast.show(barcodeData.text, '5000', 'center').subscribe(
-      //   toast => {
-      //     console.log(barcodeData.text);
-      //   }
-      // );
     }, (err) => {
       this.toast.show(err, '5000', 'center').subscribe(
         toast => {

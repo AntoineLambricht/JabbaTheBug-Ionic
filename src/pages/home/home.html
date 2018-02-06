@@ -15,13 +15,16 @@
       </form> -->
       <ion-list no-line>
         <ion-item>
-          <ion-input type="text" name="machineName" readonly>{{machineName}}</ion-input>
+          <ion-label color="primary">Nom de machine</ion-label>
+          <ion-input type="text" name="machineName" value="{{machineName}}" readonly></ion-input>
         </ion-item>
         <ion-item>
-          <ion-input type="text" placeholder="Your problem" name="descrip"></ion-input>
+          <ion-label color="primary" stacked>e-mail</ion-label>
+          <ion-input type="email" placeholder="jabba@the.hutt" name="mailuser"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-input type="text" placeholder="jabba@the.hutt" name="mailuser"></ion-input>
+          <ion-label color="primary" stacked>Probleme description</ion-label>
+          <ion-textarea placeholder="Describe the problem" name="descrip"></ion-textarea>
         </ion-item>
         <ion-item>
           <div *ngIf="imageTaken">
@@ -30,6 +33,9 @@
         </ion-item>
         <h1 *ngIf="imageTaken == false">
           <button ion-button color="dark" full round (click)="takePhoto()">Take Photo</button>
+        </h1>
+        <h1 *ngIf="imageTaken">
+          <button ion-button color="dark" full round (click)="takePhoto()">Delete Photo</button>
         </h1>
       </ion-list>
     </ion-card-content>
