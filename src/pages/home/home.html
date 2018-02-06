@@ -17,9 +17,19 @@
   </h1>
 
   <ion-card *ngIf="correctMachine">
-    <form>
-      <input type="text" value="{{machineName}}" readonly>
-    </form>
+    <ion-card-header>
+      Formulaire de problèmes
+    </ion-card-header>
+    <ion-card-content>
+      <!-- <form>
+        <input type="text" value="{{machineName}}" readonly>
+      </form> -->
+      <ion-list no-line>
+        <ion-item>
+          <ion-input type="text" name="name" readonly></ion-input>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
   </ion-card>
 
     <div *ngIf="imageTaken">
