@@ -24,21 +24,24 @@
           <ion-input type="text" placeholder="jabba@the.hutt" name="mailuser"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-input type="text" name="photo"></ion-input>
+          <div *ngIf="imageTaken">
+            <img src="{{imageSrc}}" alt="bug-photo"> 
+          </div>
         </ion-item>
-        <h1>
+        <h1 *ngIf!="imageTaken">
           <button ion-button color="dark" full round (click)="takePhoto()">Take Photo</button>
         </h1>
       </ion-list>
     </ion-card-content>
   </ion-card>
   
-  <div *ngIf="imageTaken">
-    <img src="{{imageSrc}}" alt="bug-photo"> 
-  </div>
-  <h1>
+  <h1 *ngIf!="correctMachine">
     <button ion-button color="dark" full round (click)="scan()">Start Scan</button>
   </h1>
+  <h1 *ngIf="correctMachine">
+    <button ion-button color="dark" full round (click)="cancel()">Cancel Scan</button>
+  </h1>
+
   
   
   
