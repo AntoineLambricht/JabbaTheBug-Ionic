@@ -7,8 +7,13 @@
 </ion-header>
 
 <ion-content>
-  <div *ngIf="correctMachine">
-      <ion-list>
+  
+  <ion-card *ngIf="correctMachine">
+    <ion-card-content>
+      <!-- <form>
+        <input type="text" value="{{machineName}}" readonly>
+      </form> -->
+      <ion-list no-line>
         <ion-item>
           <ion-label color="primary">Nom de machine</ion-label>
           <ion-input type="text" name="machineName" value="{{machineName}}" readonly></ion-input>
@@ -30,10 +35,12 @@
           <button ion-button color="dark" full round (click)="takePhoto()">Take Photo</button>
         </h1>
         <h1 *ngIf="imageTaken">
-          <button ion-button color="dark" full round (click)="delPhoto()">Delete Photo</button>
+          <button ion-button color="dark" full round (click)="takePhoto()">Delete Photo</button>
         </h1>
       </ion-list>
-    </div>
+    </ion-card-content>
+  </ion-card>
+  
   <h1 *ngIf="correctMachine == false">
     <button ion-button color="dark" full round (click)="scan()">Start Scan</button>
   </h1>
