@@ -59,7 +59,7 @@ export class HomePage {
     this._http.post('http://jabbathebug.tircher.be/api/bugs', '{"machinename":"LEN1408","mailuser":"antoine.lambricht@student.vinci.be","descrip":"bluescreen of death"}')
             .subscribe(
             (response) => {
-              this._toast.show("" + response.toString, '5000', 'center').subscribe(
+              this._toast.show("" + response.toString, '5000').subscribe(
                     toast => {
                       console.log("Send OK!");
                   }
