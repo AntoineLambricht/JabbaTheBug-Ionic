@@ -13,20 +13,20 @@
   </p>
   <h1>
     <button ion-button color="dark" full round (click)="scan()">Start Scan</button>
+    <button ion-button color="dark" full round (click)="takePhoto()">Take Photo</button>
   </h1>
 
-  <ion-card *ngIf="detected">
-    <p>{{value}}</p>
-    <button class="btn btn-primary">Tro du cul</button>
-    <!-- <ion-card-header>
-      <h2>Price: $ {{selectedProduct.price}}</h2>
-    </ion-card-header> -->
-    <!-- <ion-card-content> -->
-      <!-- <ul>
-        <li>{{selectedProduct.plu}}</li>
-        <li>{{selectedProduct.name}}</li>
-        <li>{{selectedProduct.desc}}</li>
-      </ul> -->
-    <!-- </ion-card-content> -->
+  <ion-card *ngIf="correctMachine">
+    <form>
+      <input type="text" value="{{machineName}}" readonly>
+    </form>
   </ion-card>
+
+    <div *ngIf="imageTaken">
+      <img src="{{imageSrc}}" alt="bug-photo"> 
+    </div>
+      
+
+
+  
 </ion-content>
