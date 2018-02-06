@@ -6,6 +6,7 @@ import { Toast } from '@ionic-native/toast';
 import { DataServiceProvider } from '../../providers/data-service/data-service';
 import { Http, Headers, RequestOptions } from '@angular/http'
 import { NgForm } from '@angular/forms';
+import { Header } from 'ionic-angular/components/toolbar/toolbar-header';
 
 //let $ = require('jquery');
 
@@ -47,12 +48,15 @@ export class HomePage {
     if(this.imageSrc !== ""){
       this.formValues["photo"] = this.imageSrc;
     }
+    const header = new Headers();
+    header.append('Content-Type', 'application/json');
+    let oprionts = new RequestOptions({headers: header});
     this._http.post('http://jabbathebug.tircher.be/api/bugs',
-          { 
-            "machinename":this.formValues["machinename"],
-            "mailuser":this.formValues["mailuser"],
-            "descrip":this.formValues["descrip"]
-          }).subscribe(
+        { 
+          "machinename":this.formValues["machinename"],
+          "mailuser":this.formValues["mailuser"],
+          "descrip":this.formValues["descrip"]
+        },).subscribe(
             (response) => {
               this._toast.show("" + response.toString(), '5000', 'bottom').subscribe(
                     toast => {
