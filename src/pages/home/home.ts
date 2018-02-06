@@ -49,14 +49,9 @@ export class HomePage {
     //"descrip":"bluescreen of death", 
     //"photo":....}
     if(this.imageSrc !== ""){
-
+      this.formValues["photo"] = this.imageSrc;
     }
-    this._toast.show("" + this.formValues["descrip"], '5000', 'center').subscribe(
-      toast => {
-        console.log("Send OK!");
-    }
-  );
-    this._http.post('http://jabbathebug.tircher.be/api/bugs', '{"machinename":"LEN1408","mailuser":"antoine.lambricht@student.vinci.be","descrip":"bluescreen of death"}')
+    this._http.post('http://jabbathebug.tircher.be/api/bugs', this.formValues)
             .subscribe(
             (response) => {
               this._toast.show("" + response.toString, '5000', 'bottom').subscribe(
