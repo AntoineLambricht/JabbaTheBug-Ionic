@@ -1,42 +1,46 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Formulaire de problèmes
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
-  <h1>
-    <button ion-button color="dark" full round (click)="scan()">Start Scan</button>
-    <button ion-button color="dark" full round (click)="takePhoto()">Take Photo</button>
-  </h1>
-
+<ion-content>
+  
   <ion-card *ngIf="correctMachine">
-    <ion-card-header>
-      Formulaire de problèmes
-    </ion-card-header>
     <ion-card-content>
       <!-- <form>
         <input type="text" value="{{machineName}}" readonly>
       </form> -->
       <ion-list no-line>
         <ion-item>
-          <ion-input type="text" name="name" readonly></ion-input>
+          <ion-input type="text" name="machineName" readonly></ion-input>
         </ion-item>
+        <ion-item>
+          <ion-input type="text" placeholder="Your problem" name="descrip"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="text" placeholder="jabba@the.hutt" name="mailuser"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="text" name="photo"></ion-input>
+        </ion-item>
+        <h1>
+          <button ion-button color="dark" full round (click)="takePhoto()">Take Photo</button>
+        </h1>
       </ion-list>
     </ion-card-content>
   </ion-card>
-
-    <div *ngIf="imageTaken">
-      <img src="{{imageSrc}}" alt="bug-photo"> 
-    </div>
-      
-
-
+  
+  <div *ngIf="imageTaken">
+    <img src="{{imageSrc}}" alt="bug-photo"> 
+  </div>
+  <h1>
+    <button ion-button color="dark" full round (click)="scan()">Start Scan</button>
+  </h1>
+  
+  
+  
   
 </ion-content>
