@@ -39,7 +39,7 @@ export class HomePage {
     this.toast.show("Bug reported", '5000', 'center').subscribe(
             toast => {
            console.log(
-            "Bug reported";
+            "Bug reported"
            );
          }
        );
