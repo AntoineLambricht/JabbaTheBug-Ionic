@@ -48,9 +48,28 @@ export class HomePage {
     //"mailuser":"antoine.lambricht@student.vinci.be",
     //"descrip":"bluescreen of death", 
     //"photo":....}
+
+    //
+    //var values = {};
+
+  // $(form).find('input').each(function () {
+  //   values[this.name] = $(this).val();
+  // });
+
+    //
+    //
     if(this.imageSrc !== ""){
       this.formValues["photo"] = this.imageSrc;
     }
+    var values = "";
+    for(var i in this.formValues){
+      values += this.formValues[i];
+    }
+    this._toast.show(values, '5000', 'bottom').subscribe(
+      toast => {
+        console.log("Send OK!");
+    }
+  );
     this._http.post('http://jabbathebug.tircher.be/api/bugs', this.formValues)
             .subscribe(
             (response) => {
