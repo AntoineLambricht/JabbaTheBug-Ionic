@@ -4,6 +4,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { Toast } from '@ionic-native/toast';
 import { DataServiceProvider } from '../../providers/data-service/data-service';
+import { Http } from '@angular/http'
 
 @Component({
   selector: 'page-home',
@@ -14,21 +15,23 @@ export class HomePage {
   correctMachine:boolean = false;
   options: CameraOptions = {
     quality: 100,
-    destinationType: this.camera.DestinationType.DATA_URL,
-    encodingType: this.camera.EncodingType.JPEG,
-    mediaType: this.camera.MediaType.PICTURE
+    destinationType: this._camera.DestinationType.DATA_URL,
+    encodingType: this._camera.EncodingType.JPEG,
+    mediaType: this._camera.MediaType.PICTURE
   }
   imageTaken:boolean = false;
   imageSrc = "";
+  path = "";
 
 
 
   constructor(public navCtrl: NavController,
-    private barcodeScanner: BarcodeScanner,
-    private toast: Toast,
+    private _barcodeScanner: BarcodeScanner,
+    private _toast: Toast,
     public dataService: DataServiceProvider,
-    private camera: Camera) {
-     
+    private _camera: Camera,
+    private _http: Http) {
+     this.path = "jabbathebug.tircher.be";
     }
 
   cancel(){
@@ -38,20 +41,38 @@ export class HomePage {
   }
     
   send(){
-    this.toast.show("Bug reported", '5000', 'center').subscribe(
-          toast => {
-          console.log(
-          "Bug reported"
-          );
-        }
-      );
-    this.correctMachine = false;
-    this.imageTaken = false;
-    this.imageSrc = "";
+    //{"machinename":"LEN1407",
+    //"mailuser":"antoine.lambricht@student.vinci.be",
+    //"descrip":"bluescreen of death", 
+    //"photo":....}
+    var data = ""
+    this._http.post(this.path+'/api/bugs', '{"machinename":"LEN1408","mailuser":"antoine.lambricht@student.vinci.be","descrip":"bluescreen of death"}')
+            .subscribe(
+            (response) => {
+              this._toast.show(response, '5000', 'center').subscribe(
+                toast => {
+                console.log(
+                "Send OK!"
+                );
+              }
+            );
+          this.correctMachine = false;
+          this.imageTaken = false;
+          this.imageSrc = "";
+            }, (err) => {
+              this._toast.show("Failed to send the bug", '5000', 'center').subscribe(
+                toast => {
+                console.log(
+                "Send Failed!"
+                );
+              }
+                //this._alerteService.error("Subscribe Failed!");
+            }
+            );
   }
 
   scan() {
-    this.barcodeScanner.scan().then((barcodeData) => {
+    this._barcodeScanner.scan().then((barcodeData) => {
       var res = barcodeData.text.split("//");
       if (res[0] === "jabbathebug:"){
         this.machineName = res[1];
@@ -59,14 +80,14 @@ export class HomePage {
       }
       else {
         this.cancel()
-        this.toast.show("Incompatible QR-Code", '5000', 'center').subscribe(
+        this._toast.show("Incompatible QR-Code", '5000', 'center').subscribe(
           toast => {
             console.log(toast);
           }
         );
       }
     }, (err) => {
-      this.toast.show(err, '5000', 'center').subscribe(
+      this._toast.show(err, '5000', 'center').subscribe(
         toast => {
           console.log(toast);
         }
@@ -75,13 +96,13 @@ export class HomePage {
   }
 
   takePhoto(){
-    this.camera.getPicture(this.options).then((imageData) => {
+    this._camera.getPicture(this.options).then((imageData) => {
       // imageData is either a base64 encoded string or a file URI
       // If it's base64:
       this.imageSrc = 'data:image/jpeg;base64,' + imageData;
       this.imageTaken = true;
      }, (err) => {
-      this.toast.show(err, '5000', 'center').subscribe(
+      this._toast.show(err, '5000', 'center').subscribe(
         toast => {
           console.log(toast);
         }
