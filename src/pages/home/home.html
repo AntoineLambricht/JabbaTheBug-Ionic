@@ -28,14 +28,14 @@
             <img src="{{imageSrc}}" alt="bug-photo"> 
           </div>
         </ion-item>
-        <h1 *ngIf!="imageTaken">
+        <h1 *ngIf="imageTaken == false">
           <button ion-button color="dark" full round (click)="takePhoto()">Take Photo</button>
         </h1>
       </ion-list>
     </ion-card-content>
   </ion-card>
   
-  <h1 *ngIf!="correctMachine">
+  <h1 *ngIf="correctMachine == false">
     <button ion-button color="dark" full round (click)="scan()">Start Scan</button>
   </h1>
   <h1 *ngIf="correctMachine">
