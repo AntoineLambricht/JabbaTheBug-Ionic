@@ -10,23 +10,22 @@ import { DataServiceProvider } from '../../providers/data-service/data-service';
 })
 export class HomePage {
 
-  products: any[] = [];
-  selectedProduct: any;
-  productFound:boolean = false;
+  detected:boolean = false;
+  value:string = "Not Yet";
 
   constructor(public navCtrl: NavController,
     private barcodeScanner: BarcodeScanner,
-    private toast: Toast,
-    public dataService: DataServiceProvider) {
-      this.dataService.getProducts()
-        .subscribe((response)=> {
-            this.products = response
-            console.log(this.products);
-        });
+    private toast: Toast){
+    // public dataService: DataServiceProvider) {
+    //   this.dataService.getProducts()
+    //     .subscribe((response)=> {
+    //         this.products = response
+    //         console.log(this.products);
+    //     });
   }
 
   scan() {
-    this.selectedProduct = {};
+    // this.selectedProduct = {};
     this.barcodeScanner.scan().then((barcodeData) => {
       /*this.selectedProduct = this.products.find(product => product.plu === barcodeData.text);
       if(this.selectedProduct !== undefined) {
@@ -41,6 +40,8 @@ export class HomePage {
           }
         );
       }*/
+      this.detected = true;
+      this.value = barcodeData.text;
       this.toast.show(barcodeData.text, '5000', 'center').subscribe(
         toast => {
           console.log(barcodeData.text);
