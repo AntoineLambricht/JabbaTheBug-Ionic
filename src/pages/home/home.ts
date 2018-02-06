@@ -33,6 +33,8 @@ export class HomePage {
 
   cancel(){
     this.correctMachine = false;
+    this.imageTaken = false;
+    this.imageSrc = "";
   }
     
   send(){
@@ -74,6 +76,11 @@ export class HomePage {
         }
       );
      });
+  }
+
+  delPhoto(){
+    this.imageTaken = false;
+    this.imageSrc = "";
   }
 
 }
