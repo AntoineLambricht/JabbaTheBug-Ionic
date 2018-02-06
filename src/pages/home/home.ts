@@ -4,7 +4,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { Toast } from '@ionic-native/toast';
 import { DataServiceProvider } from '../../providers/data-service/data-service';
-import { Http } from '@angular/http'
+import { Http, Headers, RequestOptions } from '@angular/http'
 import { NgForm } from '@angular/forms';
 
 //let $ = require('jquery');
@@ -47,10 +47,14 @@ export class HomePage {
     if(this.imageSrc !== ""){
       this.formValues["photo"] = this.imageSrc;
     }
-    this._http.post('http://jabbathebug.tircher.be/api/bugs', this.formValues)
-            .subscribe(
+    this._http.post('http://jabbathebug.tircher.be/api/bugs',
+          { 
+            "machinename":this.formValues["machinename"],
+            "mailuser":this.formValues["mailuser"],
+            "descrip":this.formValues["descrip"]
+          }).subscribe(
             (response) => {
-              this._toast.show("" + response.toString, '5000', 'bottom').subscribe(
+              this._toast.show("" + response.toString(), '5000', 'bottom').subscribe(
                     toast => {
                       console.log("Send OK!");
                   }
