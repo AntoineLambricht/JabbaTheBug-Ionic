@@ -4,12 +4,17 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { Toast } from '@ionic-native/toast';
 import { DataServiceProvider } from '../../providers/data-service/data-service';
-//import { Http, Headers, RequestOptions } from '@angular/http'
-import { HTTP } from '@ionic-native/http';
+import { Http, Headers, RequestOptions } from '@angular/http'
 import { NgForm } from '@angular/forms';
 import { Header } from 'ionic-angular/components/toolbar/toolbar-header';
 
-//let $ = require('jquery');
+
+const httpOptions = {
+  headers: new Headers({
+    'Content-Type':  'application/json'
+  })
+};
+
 
 @Component({
   selector: 'page-home',
@@ -35,8 +40,7 @@ export class HomePage {
     private _toast: Toast,
     public dataService: DataServiceProvider,
     private _camera: Camera,
-    private http: HTTP){
-    //private _http: Http) {
+    private _http: Http) {
      this.path = "http://jabbathebug.tircher.be";
     }
 
@@ -55,49 +59,27 @@ export class HomePage {
            console.log("Send OK!");
         }
     );
-    this.http.post("http://jabbathebug.tircher.be/api/bugs", this.formValues, {})
-    .then(data => {
-      this._toast.show("tt + " +data.status, '5000', 'bottom').subscribe(
-                       toast => {
-                         console.log("Send OK!");
-                     }
-                   );
-      console.log(data.status);
-      console.log(data.data); // data received by server
-      console.log(data.headers);
-
-    })
-    .catch(error => {
-      this._toast.show("ll - " +error.status, '5000', 'bottom').subscribe(
-        toast => {
-          console.log("Send OK!");
-      }
-    );
-      console.log(error.status);
-      console.log(error.error); // error message as string
-      console.log(error.headers);
-
-    });
-    // this._http.post('http://jabbathebug.tircher.be/api/bugs',JSON.stringify(this.formValues)
-    //     ).then(
-    //         (response) => {
-    //           this._toast.show("" + response.toString(), '5000', 'bottom').subscribe(
-    //                 toast => {
-    //                   console.log("Send OK!");
-    //               }
-    //             );
-    //           this.correctMachine = false;
-    //           this.imageTaken = false;
-    //           this.imageSrc = "";
-    //         }, (err) => {
-    //           //this._alerteService.error("Subscribe Failed!");
-    //           this._toast.show("Send Failed!", '5000', 'center').subscribe(
-    //             toast => {
-    //               console.log("Send Failed!");
-    //             }
-    //           );
-    //       }
-    //       );
+    
+    this._http
+    .post('http://jabbathebug.tircher.be/api/bugs',JSON.stringify(this.formValues),httpOptions)
+    .subscribe(
+            (response) => {
+              this._toast.show("" + response.json(), '5000', 'bottom').subscribe(
+                    toast => {
+                      console.log("Send OK!");
+                  }
+                );
+              this.correctMachine = false;
+              this.imageTaken = false;
+              this.imageSrc = "";
+            }, (err) => {
+              this._toast.show("Send Failed!", '5000', 'center').subscribe(
+                toast => {
+                  console.log("Send Failed!");
+                }
+              );
+          }
+          );
 
   }
 
