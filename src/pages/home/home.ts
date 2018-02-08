@@ -58,7 +58,7 @@ export class HomePage {
     }
     
     this._http
-    .post('http://jabbathebug.tircher.be/api/bugs',JSON.stringify(this.formValues),httpOptions)
+    .post('https://jabbathebug.tircher.be/api/bugs',JSON.stringify(this.formValues),httpOptions)
     .subscribe(
             (response) => {
               this._toast.show("" + response.json(), '5000', 'bottom').subscribe(
