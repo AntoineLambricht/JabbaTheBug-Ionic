@@ -20,6 +20,8 @@ const httpOptions = {
   selector: 'page-home',
   templateUrl: 'home.html'
 })
+
+
 export class HomePage {
   machineName = ""
   formValues = {}
