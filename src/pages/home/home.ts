@@ -61,7 +61,7 @@ export class HomePage {
     .post('https://jabbathebug.tircher.be/api/bugs',JSON.stringify(this.formValues),httpOptions)
     .subscribe(
             (response) => {
-              this._toast.show("" + response.json(), '5000', 'bottom').subscribe(
+              this._toast.show("Rapport de bug envoyé !", '5000', 'bottom').subscribe(
                     toast => {
                       console.log("Send OK!");
                   }
@@ -70,7 +70,7 @@ export class HomePage {
               this.imageTaken = false;
               this.imageSrc = "";
             }, (err) => {
-              this._toast.show("Send Failed!", '5000', 'center').subscribe(
+              this._toast.show("Une erreur (serveur) est survenue ! ("+err+")", '5000', 'center').subscribe(
                 toast => {
                   console.log("Send Failed!");
                 }
@@ -96,7 +96,7 @@ export class HomePage {
         );
       }
     }, (err) => {
-      this._toast.show(err, '5000', 'center').subscribe(
+      this._toast.show("Une erreur (qrcode) est survenue ! "+err, '5000', 'center').subscribe(
         toast => {
           console.log(toast);
         }
@@ -111,7 +111,7 @@ export class HomePage {
       this.imageSrc = 'data:image/jpeg;base64,' + imageData;
       this.imageTaken = true;
      }, (err) => {
-      this._toast.show(err, '5000', 'center').subscribe(
+      this._toast.show("Une erreur (photo) est survenue ! "+err, '5000', 'center').subscribe(
         toast => {
           console.log(toast);
         }
