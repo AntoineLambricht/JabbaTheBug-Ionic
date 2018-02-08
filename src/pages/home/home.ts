@@ -27,7 +27,7 @@ export class HomePage {
   formValues = {}
   correctMachine:boolean = false;
   options: CameraOptions = {
-    quality: 100,
+    quality: 10,
     destinationType: this._camera.DestinationType.DATA_URL,
     encodingType: this._camera.EncodingType.JPEG,
     mediaType: this._camera.MediaType.PICTURE
@@ -56,11 +56,6 @@ export class HomePage {
     if(this.imageSrc !== ""){
       this.formValues["photo"] = this.imageSrc;
     }
-    this._toast.show(JSON.stringify(this.formValues), '5000', 'bottom').subscribe(
-        toast => {
-           console.log("Send OK!");
-        }
-    );
     
     this._http
     .post('http://jabbathebug.tircher.be/api/bugs',JSON.stringify(this.formValues),httpOptions)
